@@ -19,7 +19,7 @@ There are multiple directories contained in this repository. Each directory cont
 For any given skill, there may be 1 or more problems of varying difficulty. Candidates are encouraged to attempt all
 questions, but if one become's stumped it's OK to move on.
 
-Candidates are working against a private fork of the test repository. We ask that when ready to submit, a candidate
+Candidates should work against a private fork of the test repository. We ask that when ready to submit, a candidate
 opens a PR so the team can review. We won't offer solutions to questions, but may engage in conversation on the PR if
 we have questions about approach, or want additional insight on decisions.
 
