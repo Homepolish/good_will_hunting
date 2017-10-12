@@ -14,9 +14,9 @@ defmodule Specs do
 
       iex> Specs.foo_bar(1, override_qux: true)
       {:error, "Baz should be atom or string!"}
-      
+
   """
-  @spec foo_bar(String.t, map) :: keyword
+  @spec foo_bar(String.t, [override_qux: boolean]) :: {:error, binary}
   def foo_bar(baz, override_qux: false), do: Foo.bar(%{baz: baz})
   def foo_bar(baz, override_qux: true), do: Foo.bar(%{baz: baz}, qux: 1)
 
