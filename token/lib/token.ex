@@ -29,6 +29,6 @@ defmodule Token do
   """
   @spec get_token(String.t) :: {:ok, String.t, map}
   def get_token(resource) do
-    Token.Guardian.encode_and_sign(resource)
+    Token.Guardian.encode_and_sign(resource, %{aud: ["api"], typ: "refresh"})
   end
 end
