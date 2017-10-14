@@ -3,10 +3,10 @@ defmodule Token.Guardian do
   use Guardian, otp_app: :token
 
   def subject_for_token(resource, _claims) do
-    {:error, :not_implemented}
+    {:ok, resource}
   end
 
   def resource_from_claims(claims) do
-    {:error, :not_implemented}
+    {:ok, %{name: claims["sub"]}}
   end
 end

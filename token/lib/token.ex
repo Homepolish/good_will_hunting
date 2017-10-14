@@ -12,7 +12,8 @@ defmodule Token do
   """
   @spec token_valid?(String.t) :: boolean
   def token_valid?(token) do
-    :not_implemented
+    {status, _claims} = Token.Guardian.decode_and_verify(token)
+    status == :ok
   end
 
   @doc """
@@ -28,6 +29,6 @@ defmodule Token do
   """
   @spec get_token(String.t) :: {:ok, String.t, map}
   def get_token(resource) do
-    :not_implemented
+    Token.Guardian.encode_and_sign(resource, %{aud: ["api"], typ: "refresh"})
   end
 end

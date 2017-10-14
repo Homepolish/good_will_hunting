@@ -1,4 +1,5 @@
 defmodule Password do
+  require Bcrypt
   @moduledoc false
 
   @doc """
@@ -15,6 +16,6 @@ defmodule Password do
   """
   @spec valid_password?(User.t, String.t) :: boolean
   def valid_password?(user, password) do
-    :not_implemented
+    Bcrypt.verify_pass(password, user.encrypted_password)
   end
 end

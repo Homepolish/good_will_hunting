@@ -6,7 +6,10 @@ defmodule ClustererTest do
     setup do
       unless Node.alive?(), do: {:ok, _} = Node.start(:bar@localhost, :shortnames)
       # Start foo@localhost
-      Port.open({:spawn_executable, "./test/start_helper.sh"}, [:binary, args: [to_string(Node.get_cookie)]])
+      Port.open(
+        {:spawn_executable, "./test/start_helper.sh"},
+        [:binary, args: [to_string(Node.get_cookie)]]
+      )
       # Let nodes have time to register
       :timer.sleep(1000)
       on_exit fn ->
@@ -19,7 +22,7 @@ defmodule ClustererTest do
     end
 
     test "makes a sandwich" do
-      resp = :not_implemented
+      resp = :rpc.call(:"foo@localhost", Clusterer, :make_me_a_sandwich, [])
 
       # Here's our expectation
       assert resp == "foo has made a sandwich."
