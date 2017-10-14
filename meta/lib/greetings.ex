@@ -4,7 +4,7 @@ defmodule Greetings do
   defmacro __using__(opts) do
     quote do
       def hello do
-        "Hello, Elixir.Meta! You init’d Elixir.Greetings with"
+        "Hello, #{__MODULE__}! You init’d #{unquote(__MODULE__)} with"
           <> " #{unquote(opts |> inspect)}!"
       end
     end
