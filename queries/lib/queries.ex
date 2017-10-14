@@ -32,17 +32,11 @@ defmodule Queries do
   Note: Try something other than `or` clauses for this query.
   """
   def medium_cities_or_hot_cities_or_cold_small_cities() do
-    query = City |> join(:inner, [c], w in Weather, c.id == w.city_id)
-    medium_cities =
-      City
-      |> where([c], c.population > 5_000 and c.population < 1_000_000)
-      |> Repo.all
-    hot_cities = query |> where([c, w], w.temp_lo > 30) |> Repo.all
-    cold_small_cities =
-      query
-      |> where([c, w], c.population < 5_000 and w.temp_lo < 24)
-      |> Repo.all
-
-    medium_cities ++ hot_cities ++ cold_small_cities |> Enum.uniq |> Enum.sort
+    City
+    |> join(:inner, [c], w in Weather, c.id == w.city_id)
+    |> where([c], c.population > 5_000 and c.population < 1_000_000)
+    |> or_where([c, w], w.temp_lo > 30)
+    |> or_where([c, w], c.population < 5_000 and w.temp_lo < 24)
+    |> Repo.all
   end
 end
