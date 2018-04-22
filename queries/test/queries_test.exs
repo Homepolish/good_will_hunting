@@ -22,18 +22,18 @@ defmodule QueriesTest do
     end)
   end
 
-  test "big_cities_with_perfect_weather/0" do
+  test "big_cities_with_perfect_weather/0" do #Returns list of cities with temp >= 24c and temp <= 30c (A), and pop > 1_000_000 (A).
     list = Queries.big_cities_with_perfect_weather()
     assert Enum.map(list, &(&1.name)) == ["City A"]
   end
 
-  test "small_cities_or_cold_cities/0" do
+  test "small_cities_or_cold_cities/0" do #Returns list of cities with temp < 24c (C D), or pop < 5_000 (B C).
     list = Queries.small_cities_or_cold_cities()
     assert Enum.map(list, &(&1.name)) == ["City B", "City C", "City D"]
   end
 
-  test "medium_cities_or_hot_cities_or_cold_small_cities/0" do
+  test "medium_cities_or_hot_cities_or_cold_small_cities/0" do #Returns list of cities with pop > 5000 and < 1_000_000 (D E), or temp_hi > 30c (B), or pop < 5_000 and temp_low < 24c (B, C).
     list = Queries.medium_cities_or_hot_cities_or_cold_small_cities()
-    assert Enum.map(list, &(&1.name)) == ["City B", "City D", "City E"]
+    assert Enum.map(list, &(&1.name)) == ["City B", "City C", "City D", "City E"]
   end
 end

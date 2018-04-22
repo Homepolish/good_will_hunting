@@ -13,8 +13,21 @@ defmodule Password do
       iex> Password.valid_password?(user, "leeloo dallas multipass")
       true
   """
+
+#  Doctest failed
+#  code: user = %User{encrypted_password: "$2b$12$EJEM1PCRUUETHFBIVnIVt.h7JRydgrzWWOeP6jUKCyH9TtZAClkpG"}
+#         Password.valid_password?(user, "leeloo dallas multipass") === true
+#  left: :not_implemented
+#  stacktrace:
+#    lib/password.ex:12: Password (module)
+
+
   @spec valid_password?(User.t, String.t) :: boolean
   def valid_password?(user, password) do
-    :not_implemented
+    # alias Pbkdf2
+    # Pbkdf2.verify_pass(password, user.encrypted_password)
+    
+    alias Bcrypt
+    Bcrypt.verify_pass(password, user.encrypted_password)
   end
 end

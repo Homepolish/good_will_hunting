@@ -12,7 +12,12 @@ defmodule Token do
   """
   @spec token_valid?(String.t) :: boolean
   def token_valid?(token) do
-    :not_implemented
+    {response, _claims} = Token.Guardian.decode_and_verify(token) #https://github.com/ueberauth/guardian/blob/v1.0.1/lib/guardian.ex#L611
+    
+    case response do
+      :ok -> true
+      :error -> false
+    end
   end
 
   @doc """
@@ -28,6 +33,8 @@ defmodule Token do
   """
   @spec get_token(String.t) :: {:ok, String.t, map}
   def get_token(resource) do
-    :not_implemented
+
+  #https://github.com/ueberauth/guardian/blob/v1.0.1/lib/guardian.ex#L569
+    Token.Guardian.encode_and_sign(resource, %{aud: ["api"], typ: "refresh"})
   end
 end
