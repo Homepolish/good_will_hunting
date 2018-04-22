@@ -32,8 +32,8 @@ defmodule QueriesTest do
     assert Enum.map(list, &(&1.name)) == ["City B", "City C", "City D"]
   end
 
-  test "medium_cities_or_hot_cities_or_cold_small_cities/0" do #Returns list of cities with pop > 5000 and < 1_000_000 (A D E), or temp > 30c (), or pop < 5_000 and temp < 24c (C).
+  test "medium_cities_or_hot_cities_or_cold_small_cities/0" do #Returns list of cities with pop > 5000 and < 1_000_000 (D E), or temp_hi > 30c (B), or pop < 5_000 and temp_low < 24c (B, C).
     list = Queries.medium_cities_or_hot_cities_or_cold_small_cities()
-    assert Enum.map(list, &(&1.name)) == ["City A", "City C", "City D", "City E"]
+    assert Enum.map(list, &(&1.name)) == ["City B", "City C", "City D", "City E"]
   end
 end

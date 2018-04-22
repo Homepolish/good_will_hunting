@@ -35,7 +35,7 @@ defmodule Queries do
     City
     |> join(:inner, [city], temp in Weather, city.id == temp.city_id)
     |> where([city], city.population > 5_000 and city.population < 1_000_000)
-    |> or_where([city, temp], temp.temp_lo > 30)
+    |> or_where([city, temp], temp.temp_hi > 30)
     |> or_where([city, temp], city.population < 5_000 and temp.temp_lo < 24)
     |> Repo.all
   end
