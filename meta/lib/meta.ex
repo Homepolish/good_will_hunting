@@ -6,7 +6,7 @@ defmodule Meta do
   ## Examples
 
       iex> Meta.hello
-      "Hello, Elixir.Meta! You init’d Elixir.Greetings with [foo: :bar]!"
+      "Hello, Elixir.Meta! You init'd Elixir.Greetings with [foo: :bar]!"
 
       iex> Meta.excuse_us([:a, :b, :c])
       [:a, :x, :y, :z, :b, :c]

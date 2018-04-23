@@ -1,0 +1,4 @@
+%{
+  "bcrypt_elixir": {:hex, :bcrypt_elixir, "1.0.6", "58a865939b3106d5ad4841f660955b958be6db955dda034fbbc1069dbacb97fa", [:make, :mix], [{:elixir_make, "~> 0.4", [hex: :elixir_make, repo: "hexpm", optional: false]}], "hexpm"},
+  "elixir_make": {:hex, :elixir_make, "0.4.1", "6628b86053190a80b9072382bb9756a6c78624f208ec0ff22cb94c8977d80060", [:mix], [], "hexpm"},
+}

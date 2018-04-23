@@ -16,7 +16,7 @@ defmodule Specs do
       {:error, "Baz should be atom or string!"}
       
   """
-  @spec foo_bar(String.t, map) :: keyword
+  @spec foo_bar(String.t, list) :: map | {:error, binary}
   def foo_bar(baz, override_qux: false), do: Foo.bar(%{baz: baz})
   def foo_bar(baz, override_qux: true), do: Foo.bar(%{baz: baz}, qux: 1)
 

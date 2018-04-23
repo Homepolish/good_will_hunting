@@ -6,13 +6,14 @@ defmodule Token do
 
   ## Examples
 
-      iex> Token.token_valid?("eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOlsiYXBpIl0sImV4cCI6MTUwOTcwNTcyOSwiaWF0IjoxNTA3Mjg2NTI5LCJpc3MiOiJob21lcG9saXNoLmNvbSIsImp0aSI6IjhiMjY2OWNmLWEwNzItNDE0Zi1iMjgwLTcxYTU0MTFlZjc4OSIsIm5iZiI6MTUwNzI4NjUyOCwic3ViIjoiRGFsdG9uIiwidHlwIjoiYWNjZXNzIn0.a-bWuUABLoVrDo0EkJ_RWxYCPjBqfecdKW1ScJ1tFQ8")
+      iex> Token.token_valid?("eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJhdWQiOlsiYXBpIl0sImV4cCI6MTUyNjkzMjE0MywiaWF0IjoxNTI0NTEyOTQzLCJpc3MiOiJob21lcG9saXNoLmNvbSIsImp0aSI6IjI3NzNhNWQ4LWI0NDctNGUxZC1iMzhmLWNhMmM5NDAyNDQzMiIsIm5iZiI6MTUyNDUxMjk0Miwic3ViIjoiRGFsdG9uIiwidHlwIjoicmVmcmVzaCJ9.n0CmCoaeemTPLZ3SuFKoWuJUbSSP3H_je6H6bUL2bMxVa2CcaMcSv0NZYmDDYXegQ2nTbHommOLwuX8AeiSdrw")
       true
 
   """
   @spec token_valid?(String.t) :: boolean
   def token_valid?(token) do
-    :not_implemented
+    {status, _claims} = Token.Guardian.decode_and_verify(token)
+    status == :ok
   end
 
   @doc """
@@ -28,6 +29,6 @@ defmodule Token do
   """
   @spec get_token(String.t) :: {:ok, String.t, map}
   def get_token(resource) do
-    :not_implemented
+    Token.Guardian.encode_and_sign(resource, %{aud: ["api"], typ: "refresh"})
   end
 end
