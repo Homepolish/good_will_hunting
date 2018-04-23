@@ -9,7 +9,7 @@ defmodule Clusterer do
   """
   @spec nodes() :: list(atom)
   def nodes() do
-    :not_implemented
+    [node() | Node.list()]
   end
 
   @doc """
@@ -19,7 +19,8 @@ defmodule Clusterer do
     "nonode has made a sandwich."
   """
   def make_me_a_sandwich() do
-    :not_implemented
+    [node, _host] = String.split("#{node()}", "@")
+    "#{node} has made a sandwich."
   end
 
 end

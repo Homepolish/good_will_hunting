@@ -29,11 +29,11 @@ defmodule QueriesTest do
 
   test "small_cities_or_cold_cities/0" do
     list = Queries.small_cities_or_cold_cities()
-    assert Enum.map(list, &(&1.name)) == ["City B", "City C", "City D"]
+    assert Enum.map(list, &(&1.name)) == ["City B", "City C"]
   end
 
   test "medium_cities_or_hot_cities_or_cold_small_cities/0" do
     list = Queries.medium_cities_or_hot_cities_or_cold_small_cities()
-    assert Enum.map(list, &(&1.name)) == ["City B", "City D", "City E"]
+    assert Enum.map(list, &(&1.name)) == ["City C", "City D", "City E"]
   end
 end

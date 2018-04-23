@@ -19,7 +19,7 @@ defmodule ClustererTest do
     end
 
     test "makes a sandwich" do
-      resp = :not_implemented
+      resp = :rpc.call(:"foo@localhost", Clusterer, :make_me_a_sandwich, [])
 
       # Here's our expectation
       assert resp == "foo has made a sandwich."
